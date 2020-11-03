@@ -23,11 +23,23 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <mybatis.spring.version>1.3.2</mybatis.spring.version>
     </properties>
 
     <modules>
         <module>basic-client</module>
         <module>basic-server</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+<!--            <dependency>-->
+<!--                <groupId>org.mybatis.spring.boot</groupId>-->
+<!--                <artifactId>mybatis-spring-boot-starter</artifactId>-->
+<!--                <version>${mybatis.spring.version}</version>-->
+<!--            </dependency>-->
+        </dependencies>
+    </dependencyManagement>
+
 
 </project>

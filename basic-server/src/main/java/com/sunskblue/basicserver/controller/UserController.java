@@ -1,20 +1,22 @@
 package com.sunskblue.basicserver.controller;
 
 import com.sunskblue.basicclient.bean.TUser;
+import com.sunskblue.basicserver.service.impl.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/test")
 public class UserController {
 
+    @Resource
+    private UserService userService;
+
     @RequestMapping("/user")
     public String GetUser(){
-        TUser tUser = new TUser();
-        tUser.setPassword("password");
-        tUser.setPhone("phone");
-        tUser.setUserId(1);
-        tUser.setUserName("username");
-        return tUser.toString();
+        TUser sel = userService.SelectAll();
+        return sel.toString();
     }
 }
