@@ -6,7 +6,7 @@
     <parent>
         <artifactId>basic</artifactId>
         <groupId>com.sunskblue</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
 
     <artifactId>basic-server</artifactId>
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.sunskblue</groupId>
             <artifactId>basic-client</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
 
         <dependency>

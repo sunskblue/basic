@@ -15,10 +15,10 @@
 
     <groupId>com.sunskblue</groupId>
     <artifactId>basic</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>basic</name>
     <packaging>pom</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>基础项目</description>
 
 
     <properties>
