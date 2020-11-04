@@ -4,3 +4,12 @@ spring:
 
 server:
   port: 8080
+
+# 配置swagger
+swagger:
+  version: 2.0
+  groupName: 基础项目
+  title: 基础项目
+  description: 接口文档
+  # 扫描的包路径
+  basePackage: com.sunskblue.basicserver.controller

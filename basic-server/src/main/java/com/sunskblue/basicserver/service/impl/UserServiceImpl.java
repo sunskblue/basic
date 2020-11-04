@@ -6,14 +6,14 @@ import com.sunskblue.basicserver.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Resource
     UserMapper userMapper;
 
-    public TUser SelectAll() {
-        TUser tUser = userMapper.SelectAll();
-        return tUser;
+    public List<TUser> SelectAll() {
+        return userMapper.SelectAll();
     }
 }

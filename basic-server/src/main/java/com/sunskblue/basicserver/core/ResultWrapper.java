@@ -1,6 +1,7 @@
 package com.sunskblue.basicserver.core;
 
 import com.google.gson.Gson;
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
@@ -9,8 +10,11 @@ import com.google.gson.Gson;
  * @param <T>
  */
 public class ResultWrapper<T> {
+    @ApiModelProperty("code")
     private int code;
+    @ApiModelProperty("message")
     private String message;
+    @ApiModelProperty("data")
     private T data;
 
     public ResultWrapper setCode(ResultCode resultCode) {
