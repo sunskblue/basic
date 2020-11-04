@@ -15,8 +15,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/user")
-    public String GetUser(){
-        TUser sel = userService.SelectAll();
-        return sel.toString();
+    public String GetUser() {
+        TUser tUser = userService.SelectAll();
+        return tUser.toString();
     }
 }

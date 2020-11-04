@@ -12,9 +12,9 @@ public class UserService {
     UserMapper userMapper;
 
     public TUser SelectAll() {
-        TUser sel = userMapper.SelectAll();
-        System.out.println("===================" + sel.toString());
-        return sel;
+        TUser tUser = userMapper.SelectAll();
+        System.out.println("===================" + tUser.toString());
+        return tUser;
     }
 
 }
