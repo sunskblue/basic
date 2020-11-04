@@ -1,7 +1,9 @@
 package com.sunskblue.basicserver.controller;
 
 import com.sunskblue.basicclient.bean.TUser;
-import com.sunskblue.basicserver.service.impl.UserService;
+import com.sunskblue.basicserver.core.ResultGenerator;
+import com.sunskblue.basicserver.core.ResultWrapper;
+import com.sunskblue.basicserver.service.impl.UserServiceImpl;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,11 +14,11 @@ import javax.annotation.Resource;
 public class UserController {
 
     @Resource
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @RequestMapping("/user")
-    public String GetUser() {
+    public ResultWrapper GetUser() {
         TUser tUser = userService.SelectAll();
-        return tUser.toString();
+        return ResultGenerator.genSuccessResult(tUser);
     }
 }
