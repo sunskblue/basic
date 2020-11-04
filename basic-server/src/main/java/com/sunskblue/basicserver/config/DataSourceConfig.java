@@ -20,6 +20,11 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.io.IOException;
 
+/**
+ * @author sunshaokang
+ * @date Created in 2020/11/4 3:57 下午
+ * Description：Druid数据源配置类
+ */
 @Configuration
 @MapperScan(basePackages = DataSourceConfig.PACKAGE, sqlSessionFactoryRef = "mybatisSqlSessionFactory")
 public class DataSourceConfig {

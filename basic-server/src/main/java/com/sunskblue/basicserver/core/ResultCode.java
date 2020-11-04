@@ -1,7 +1,9 @@
 package com.sunskblue.basicserver.core;
 
 /**
- * 响应码枚举，参考HTTP状态码的语义
+ * @author sunshaokang
+ * @date Created in 2020/11/4 3:57 下午
+ * Description：响应码枚举，参考HTTP状态码的语义
  */
 public enum ResultCode {
     SUCCESS(200),//成功

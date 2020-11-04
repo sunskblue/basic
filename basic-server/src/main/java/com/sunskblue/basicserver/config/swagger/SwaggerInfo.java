@@ -5,6 +5,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * @author sunshaokang
+ * @date Created in 2020/11/4 3:57 下午
+ * Description：Swagger信息
+ */
 @Data
 @Component
 @ConfigurationProperties(prefix = "swagger")

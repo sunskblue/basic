@@ -88,6 +88,14 @@
 <!--            <artifactId>spring-web</artifactId>-->
 <!--            <version>5.2.9.RELEASE</version>-->
 <!--        </dependency>-->
+
+        <!-- spring boot configuration annotation processor not configured 错误解决方案 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
 
     <build>

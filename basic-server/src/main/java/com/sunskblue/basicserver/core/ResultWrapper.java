@@ -5,9 +5,10 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 /**
- * 接口返回统一封装
- *
+ * @author sunshaokang
+ * @date Created in 2020/11/4 3:57 下午
  * @param <T>
+ * Description：接口返回统一封装
  */
 public class ResultWrapper<T> {
     @ApiModelProperty("code")

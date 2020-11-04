@@ -17,6 +17,11 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * @author sunshaokang
+ * @date Created in 2020/11/4 3:57 下午
+ * Description：Swagger配置类
+ */
 @Configuration
 @EnableSwagger2
 @EnableConfigurationProperties(SwaggerInfo.class)

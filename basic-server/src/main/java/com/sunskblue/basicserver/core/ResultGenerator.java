@@ -1,7 +1,9 @@
 package com.sunskblue.basicserver.core;
 
 /**
- * 响应结果生成工具
+ * @author sunshaokang
+ * @date Created in 2020/11/4 3:57 下午
+ * Description：响应结果生成工具
  */
 public class ResultGenerator {
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
