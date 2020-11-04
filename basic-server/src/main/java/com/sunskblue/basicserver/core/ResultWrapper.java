@@ -1,21 +1,22 @@
 package com.sunskblue.basicserver.core;
 
 import com.google.gson.Gson;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 
 /**
+ * @param <T> Description：接口返回统一封装
  * @author sunshaokang
  * @date Created in 2020/11/4 3:57 下午
- * @param <T>
- * Description：接口返回统一封装
  */
+@ApiModel(value = "通用响应返回对象")
 public class ResultWrapper<T> {
-    @ApiModelProperty("code")
+    @ApiModelProperty(value = "code")
     private int code;
-    @ApiModelProperty("message")
+    @ApiModelProperty(value = "message")
     private String message;
-    @ApiModelProperty("data")
+    @ApiModelProperty(value = "data")
     private T data;
 
     public ResultWrapper setCode(ResultCode resultCode) {

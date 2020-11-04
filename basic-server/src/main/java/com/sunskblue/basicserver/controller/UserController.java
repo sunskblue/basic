@@ -30,10 +30,7 @@ public class UserController {
      */
     @ApiOperation("获取用户列表")
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    @ApiResponses(
-            @ApiResponse(code = 200, message = "SUCCESS", response = ResultWrapper.class)
-    )
-    public ResultWrapper GetUser() {
+    public ResultWrapper<List<TUser>> GetUser() {
         List<TUser> userList = userService.SelectAll();
         return ResultGenerator.genSuccessResult(userList);
     }
