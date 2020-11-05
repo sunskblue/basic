@@ -10,7 +10,6 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
 @Getter
 @Setter
 @ApiModel("用户视图模型")

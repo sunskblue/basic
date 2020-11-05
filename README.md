@@ -1,39 +1,141 @@
-# basic
-### 基础种子项目
+##### 一、项目技术栈
+Spring Boot + Mybatis + Mysql + Druid + Swagger + logback
 
-一、快速开始
+--优点：
+* 文档丰富
+* 上手简单
 
-1.1：项目启动激活环境：
+--基础功能：
+* Swagger 在线接口文档
+* 接口统一返回
+* 常用工具类：Gson
+* 全局异常拦击
+* 自定义异常拦截
+* maven 多环境配置
+* TesgNg 单元测试
+* Quartz ：TODO
+* 代码生成器：TODO
+* 通用分页对象：TODO
+* Docker 部署项目 ：TODO
+* 封装 HTTP Client工具类
 
-application.xml 中spring.profiles.active: dev
+##### 二、快速开始
 
-1.2：初始化数据库，执行/resources/demo-user.sql 文件到数据库127.0.0.1:3306/testsql
+###### 2.1 前提
 
-1.3：接口返回统一封装：
+* 了解 Spring、Spring Boot、mysql、TestNg、Java 等基础知识
+* 物理机环境：
+    * git
+    * Java 8.x
+    * maven 3.x
+    * mysql 5.x
+    * idea: 安装lombok插件
+  
+###### 2.2 项目结构
 
-使用ResultGenrator中的静态方法即可
+```
+.
+├── README.md
+├── basic-client
+│   ├── pom.xml
+│   └── src
+│       └── main
+│           └── java
+│               └── com
+│                   └── sunskblue
+│                       └── basicclient
+│                           └── bean
+│                               └── TUser.java
+├── basic-server
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── com
+│       │   │       └── sunskblue
+│       │   │           └── basicserver
+│       │   │               ├── BasicServerApplication.java
+│       │   │               ├── config
+│       │   │               │   ├── DataSourceConfig.java
+│       │   │               │   └── swagger
+│       │   │               │       ├── SwaggerConfig.java
+│       │   │               │       └── SwaggerInfo.java
+│       │   │               ├── controller
+│       │   │               │   └── UserController.java
+│       │   │               ├── core
+│       │   │               │   ├── ResultCode.java
+│       │   │               │   ├── ResultGenerator.java
+│       │   │               │   └── ResultWrapper.java
+│       │   │               ├── exception
+│       │   │               │   ├── APIException.java
+│       │   │               │   └── ExceptionControllerAdvice.java
+│       │   │               ├── mapper
+│       │   │               │   └── UserMapper.java
+│       │   │               ├── service
+│       │   │               │   ├── UserService.java
+│       │   │               │   └── impl
+│       │   │               │       └── UserServiceImpl.java
+│       │   │               └── util
+│       │   │                   └── GsonUtil.java
+│       │   └── resources
+│       │       ├── application-dev.yml
+│       │       ├── application.yml
+│       │       ├── banner.txt
+│       │       ├── demo-user.sql
+│       │       ├── logback-spring.xml
+│       │       └── mapper
+│       │           └── UserMapping.xml
+│       └── test
+│           ├── java
+│           │   └── com
+│           │       └── sunskblue
+│           │           └── basicserver
+│           │               ├── BasicServerApplicationTests.java
+│           │               └── UserTest.java
+│           └── resources
+│               └── testng.xml
+└── pom.xml
+```
 
-1.4：Swagger 使用：
+###### 2.3 服务启动
+2.3.1 配置数据库信息：
+```
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/testsql?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: admin
+    driver-class-name: com.mysql.jdbc.Driver
+```
+2.3.2 在 testsql 库中执行demo-user.sql文件
+2.3.3 配置项目启动类，服务启动
 
-官方文档：https://github.com/swagger-api/
+###### 2.4 基础介绍
 
-Swagger 常用 API：
-* @Api用于Controller
-* @ApiOperation用于Controller内的方法。
-* @ApiResponses用于标识接口返回数据的类型。
-* @ApiModel用于标识类的名称
-* @ApModelProperty用于标识属性的名称
+Lombok 插件注解：
 
-1.5：异常校验查看:javax.validation.constraints
+* `@Data`：注解在类上，其中包含了@Getter、@Setter、@ToString、@EqualsAndHashCode、@RequiredArgsConstructor等；如果属性为final修饰的属性，则不会为该属性生成setter方法。
 
-1.6：概念
+* `@Getter`：注解可以写在类上或具体的属性上，为类中所有属性或具体的属性提供 getter 方法；
 
-VO（View Object）： 视图对象，用于展示层，它的作用是把某个指定页面（或组件）的所有数据封装起来。
+* `@Setter`：注解可以写在类上或具体的属性上，为类中所有非final修饰的属性或具体的非final修饰的属性提供 setter 方法；
 
-DTO（Data Transfer Object）： 数据传输对象，这个概念来源于J2EE的设计模式，原来的目的是为了EJB的分布式应用提供粗粒度的数据实体，以减少分布式调用的次数，从而提高分布式调用的性能和降低网络负载，但在这里，我泛指用于展示层与服务层之间的数据传输对象。
+* `@ToString`：注解写在类上，Lombok会生成一个toString()方法，默认情况下，会输出类名、所有属性(会按照属性定义顺序)，用逗号来分割；
 
-DO（Domain Object）： 领域对象，就是从现实世界中抽象出来的有形或无形的业务实体。
+spring&&spring boot注解介绍：
 
-PO（Persistent Object）： 持久化对象，它跟持久层（通常是关系型数据库）的数据结构形成一一对应的映射关系，如果持久层是关系型数据库，那么，数据表中的每个字段（或若干个）就对应PO的一个（或若干个）属性。
+* `@RestController`:用于标注控制层组件, @Controller 和 @ResponseBody 的合集,表示这是个控制器bean,并且是将函数的返回值直 接填入HTTP响应体中,是REST风格的控制器。
+* `@RequestMapping`:提供路由信息
+* `@SpringBootApplication`:可以理解为该注解作用于服务启动类上，包含了@ComponentScan、@Configuration和@EnableAutoConfiguration注解
+* `@Configuration`:作用于配置类，相当于 xml 配置文件
+* `@PathVariable`：获取参数。
+* `@Autowired`：自动导入。
+* `@Resource`:自动导入。
+* `@Service`:修饰 service 层组件
+* `@Repository`:修饰 Dao 层组件（不是 spring 的注解）
+* `@Mapper`:修饰 Dao 层组件
 
-1.7：项目已经集成 testNg 测试时使用 testng
+`@Repository`和`@Mapper`区别：
+
+* 使用@mapper后，不需要在spring配置中设置扫描地址，通过mapper.xml里面的namespace属性对应相关的mapper类，spring将动态的生成Bean后注入到ServiceImpl中。
+* @repository则需要在Spring中配置扫描包地址，然后生成dao层的bean，之后被注入到ServiceImpl中。

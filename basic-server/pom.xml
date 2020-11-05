@@ -116,11 +116,18 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.3.0</version>
             <scope>test</scope>
+        </dependency>
+        <!-- 集成测试，热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>
