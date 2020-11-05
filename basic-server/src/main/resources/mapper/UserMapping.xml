@@ -4,10 +4,16 @@
 
     <resultMap id="BaseResultMap" type="com.sunskblue.basicclient.bean.TUser">
         <result column="userId" jdbcType="INTEGER" property="userId"/>
-        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="userName" jdbcType="VARCHAR" property="username"/>
         <result column="passWord" jdbcType="VARCHAR" property="password"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
     </resultMap>
+
+    <!--    userId 在数据库中为主键、自增，所以在插入语句中需要指定 keyProperty，useGeneratedKeys为 True 表示userId 自动生成。-->
+
+    <insert id="SaveUser" keyProperty="userId" useGeneratedKeys="true">
+        insert into t_user (userId,userName,passWord,phone) values (#{userId},#{username},#{password},#{phone})
+    </insert>
 
     <select id="SelectAll" resultMap="BaseResultMap">
         select * from t_user

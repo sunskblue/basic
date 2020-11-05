@@ -23,3 +23,5 @@ Swagger 常用 API：
 * @ApiResponses用于标识接口返回数据的类型。
 * @ApiModel用于标识类的名称
 * @ApModelProperty用于标识属性的名称
+
+1.5：异常校验查看:javax.validation.constraints

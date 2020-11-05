@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserService {
     List<TUser> SelectAll();
+    void SaveUser(TUser tUser);
 }

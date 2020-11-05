@@ -11,8 +11,9 @@ import lombok.Getter;
  */
 @ApiModel("通用响应返回 code")
 public enum ResultCode {
-    SUCCESS(200, "成功"),
-    FAIL(400, "失败"),
+    SUCCESS(1000, "成功"),
+    FAIL(1001, "失败"),
+    PARAM_VALIED_FAILED(1002,"参数校验失败"),
     UNAUTHORIZED(401, "未认证（签名错误）"),
     NOT_FOUND(404, "接口不存在"),
     INTERNAL_SERVER_ERROR(500, "服务器内部错误");
@@ -28,5 +29,8 @@ public enum ResultCode {
 
     public int code(){
         return code;
+    }
+    public String msg(){
+        return msg;
     }
 }

@@ -27,7 +27,7 @@ import java.util.Collection;
 @Configuration
 @EnableSwagger2
 @EnableConfigurationProperties(SwaggerInfo.class)
-@Profile({"dev"})
+//@Profile({"dev"})
 public class SwaggerConfig {
 
     @Resource

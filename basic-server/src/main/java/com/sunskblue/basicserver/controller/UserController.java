@@ -1,6 +1,7 @@
 package com.sunskblue.basicserver.controller;
 
 import com.sunskblue.basicclient.bean.TUser;
+import com.sunskblue.basicserver.core.ResultCode;
 import com.sunskblue.basicserver.core.ResultGenerator;
 import com.sunskblue.basicserver.core.ResultWrapper;
 import com.sunskblue.basicserver.service.impl.UserServiceImpl;
@@ -8,11 +9,16 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,9 +35,17 @@ public class UserController {
      * @return
      */
     @ApiOperation("获取用户列表")
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/getUser", method = RequestMethod.GET)
     public ResultWrapper<List<TUser>> GetUser() {
         List<TUser> userList = userService.SelectAll();
         return ResultGenerator.genSuccessResult(userList);
     }
+
+    @ApiOperation("新增用户")
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
+    public ResultWrapper SaveUser(@RequestBody @Valid TUser tUser) {
+        userService.SaveUser(tUser);
+        return ResultGenerator.genSuccessResult();
+    }
+
 }

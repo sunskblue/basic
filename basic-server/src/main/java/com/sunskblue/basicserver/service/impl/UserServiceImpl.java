@@ -16,4 +16,9 @@ public class UserServiceImpl implements UserService {
     public List<TUser> SelectAll() {
         return userMapper.SelectAll();
     }
+
+    @Override
+    public void SaveUser(TUser tUser) {
+        userMapper.SaveUser(tUser);
+    }
 }

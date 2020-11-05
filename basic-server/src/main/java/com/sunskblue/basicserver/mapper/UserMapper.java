@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface UserMapper {
     List<TUser> SelectAll();
+    void SaveUser(TUser tUser);
 }
