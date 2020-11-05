@@ -9,4 +9,5 @@ import java.util.List;
 public interface UserMapper {
     List<TUser> SelectAll();
     void SaveUser(TUser tUser);
+    TUser SelectUserById(int userId);
 }
