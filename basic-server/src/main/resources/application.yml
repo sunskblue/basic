@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: basic
 
 server:
   port: 8080
@@ -13,3 +15,12 @@ swagger:
   description: base 接口文档
   # 扫描的包路径
   basePackage: com.sunskblue.basicserver.controller
+
+#日志配置文件
+logging:
+  config: classpath:logback-spring.xml
+log:
+  dir: ./log_data/server_log/
+thirdparty:
+  log:
+    level: ERROR

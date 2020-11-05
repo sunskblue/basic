@@ -9,3 +9,12 @@ spring:
     username: root
     password: admin
     driver-class-name: com.mysql.jdbc.Driver
+
+#日志配置
+log:
+  root:
+    level: INFO
+  appender:
+    root:
+      filter:
+        level: INFO
