@@ -10,6 +10,7 @@
             <class name="com.sunskblue.basicserver.UserTest">
                 <methods>
                     <include name="testcase"/>
+                    <include name="testPage"/>
                 </methods>
             </class>
         </classes>

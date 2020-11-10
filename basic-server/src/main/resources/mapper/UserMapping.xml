@@ -9,6 +9,26 @@
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
     </resultMap>
 
+    <sql id="Base_Column_List">
+        userId, userName, passWord, phone
+    </sql>
+    <sql id="UtilSql">
+        1 = 1
+        <if test="userId != null">
+            and userId = #{userId,jdbcType=INTEGER}
+        </if>
+        <if test="username != null">
+            and userName = #{username,jdbcType=VARCHAR}
+        </if>
+        <if test="password != null">
+            and passWord = #{password,jdbcType=VARCHAR}
+        </if>
+        <if test="phone != null">
+            and phone = #{phone,jdbcType=VARCHAR}
+        </if>
+    </sql>
+
+
     <!--    userId 在数据库中为主键、自增，所以在插入语句中需要指定 keyProperty，useGeneratedKeys为 True 表示userId 自动生成。-->
 
     <insert id="SaveUser" keyProperty="userId" useGeneratedKeys="true">
@@ -23,4 +43,14 @@
         SELECT * FROM t_user WHERE userId = #{userId}
     </select>
 
+    <!-- 分页查询 -->
+    <select id="SelectAllUser" resultMap="BaseResultMap"
+            parameterType="com.sunskblue.basicclient.bean.TUser">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_user
+        <where>
+        <include refid="UtilSql"/>
+        </where>
+    </select>
 </mapper>

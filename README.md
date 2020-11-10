@@ -12,7 +12,7 @@ Spring Boot + Mybatis + Mysql + Druid + Swagger + logback
 * 全局异常拦击
 * 自定义异常拦截
 * maven 多环境配置
-* TesgNg 单元测试
+* TestNg 单元测试
 * Quartz ：TODO
 * 代码生成器：TODO
 * 通用分页对象：TODO
