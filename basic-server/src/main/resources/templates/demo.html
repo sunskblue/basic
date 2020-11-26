@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout (~{::body},'testPlatform')}">
+<body>
+<el-main>
+
+    <el-breadcrumb separator="/">
+        <el-breadcrumb-item><a href="/">首页</a></el-breadcrumb-item>
+        <el-breadcrumb-item>demo1</el-breadcrumb-item>
+        <el-breadcrumb-item>subdemo1</el-breadcrumb-item>
+    </el-breadcrumb>
+
+    <!-- form 表单 -->
+    <!-- ref 绑定控件， model 可以理解为表单名，结合 rules 做表单验证  :label-position 表单对齐 需要在 data 中显示写明对其方式-->
+    <el-form ref="form" :model="demoForm" :rules="rules" :label-position="labelPosition" inline="true"
+             label-width="150px" class="query-form">
+        <!-- tab 选项卡 -->
+        <el-tabs type="border-card" value="first">
+            <el-tab-pane label="模块 1" name="first">
+                <div class="clearFloat">
+                    <el-row>
+                        <!-- span 属性规定 col 横跨的列数 -->
+                        <el-col span="8">
+
+                            <!-- prop 属性绑定字段名，表示需要进行校验的字段。表单验证时，就会验证 el-input 元素绑定的变量 demoForm.destCode 的值是否符合验证规则-->
+                            <el-form-item label="输入框" prop="input">
+                                <!-- 输入框 input -->
+                                <!-- TODO -->
+                                <el-input v-model="demoForm.input" placeholder="请输入你想输入的字符"
+                                          value="{{demoForm.input}}"
+                                          style="width: 180px;"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col span="8">
+                            <!-- 下拉框 select，可以通过写死的方式 -->
+                            <!-- 下拉框需要使用 v-for 遍历 -->
+                            <el-form-item label="下拉框，写死数据" prop="select1">
+                                <el-select v-model="demoForm.select1" placeholder="请选择"
+                                           style="width: 120px">
+                                    <el-option
+                                            v-for="item in select1"
+                                            :key="item.value"
+                                            :value="item.value"
+                                            :label="item.label">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                        <el-col span="8">
+                            <!-- 下拉框 select，接口调用的方式 ，该下拉框调用的 getAllSelect 接口-->
+                            <!-- 下拉框需要的数据是 Map<List> 格式数据 -->
+                            <el-form-item label="下拉框，接口调用" prop="content">
+                                <el-select v-model="demoForm.content" placeholder="请选择" style="width: 120px">
+                                    <el-option
+                                            v-for="option in demoForm.selects"
+                                            :key="option.selectId"
+                                            :value="option.selectId"
+                                            :label="option.content">
+                                        {{ option.content }}
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row>
+                        <!-- 日期选择器 DatePicker -->
+                        <el-form-item label="日期选择器" prop="departDate">
+                            <el-date-picker
+                                    v-model="demoForm.departDate"
+                                    type="date"
+                                    format="yyyy-MM-dd"
+                                    value-format="yyyy-MM-dd"
+                                    style="width: 150px;"
+                                    placeholder="选择日期">
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-row>
+                    <el-row>
+                        <!-- 日期选择器 TimePicker -->
+                        <el-form-item label="时间选择器" prop="TimePicker">
+                            <el-time-picker
+                                    v-model="demoForm.value1"
+                                    :picker-options="{selectableRange: '18:30:00 - 20:30:00' }"
+                                    placeholder="任意时间点">
+                            </el-time-picker>
+                            <el-time-picker
+                                    arrow-control
+                                    v-model="demoForm.value2"
+                                    :picker-options="{selectableRange: '18:30:00 - 20:30:00'}"
+                                    placeholder="任意时间点">
+                            </el-time-picker>
+                            </template>
+                        </el-form-item>
+                    </el-row>
+                    <el-row>
+                        <!-- 日期时间选择器 DateTimePicker -->
+                        <el-form-item label="日期时间选择器">
+                            <el-date-picker
+                                    v-model="demoForm.DateTimePicker"
+                                    type="datetimerange"
+                                    range-separator="至"
+                                    start-placeholder="开始日期"
+                                    end-placeholder="结束日期">
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-row>
+                    <el-row>
+                        <!-- 单选框 radio -->
+                        <el-form-item lable="单选框" prop="radio">
+                            <el-radio-group v-model="radio">
+                                <el-radio :label="1">是</el-radio>
+                                <el-radio :label="2">否</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </el-row>
+                    <el-row>
+                        <!-- 多选框 checkbox -->
+                        <el-form-item lable="多选框" prop="checkbox">
+                            <el-checkbox-group v-model="checkbox">
+                                <el-checkbox label="复选框 A"></el-checkbox>
+                                <el-checkbox label="复选框 B"></el-checkbox>
+                                <el-checkbox label="复选框 C"></el-checkbox>
+                                <el-checkbox label="禁用" disabled></el-checkbox>
+                                <el-checkbox label="选中且禁用" disabled></el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </el-row>
+
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit(demoForm)">查询</el-button>
+                    </el-form-item>
+
+
+                    <el-form-item>
+                        <el-button type="primary" @click="handleSubmitParam()">重置</el-button>
+                    </el-form-item>
+                </div>
+
+                <template>
+                    <!-- 标记数据列表名称，后续填充数据需要使用 -->
+                    <el-table v-loading="loading" :data="tableData"
+                              element-loading-text="拼命生单中"
+                              border style="width: 100%; margin-top: 0px;"
+                              height="400px"
+                              fit="false">
+                        >
+                        <el-table-column type="index" width="50"></el-table-column>
+                        <el-table-column prop="userId" label="用户 id" width="180" align="center"></el-table-column>
+                        <el-table-column prop="username" label="用户名" width="180" align="center"></el-table-column>
+                        <el-table-column prop="password" label="密码" width="180" align="center"></el-table-column>
+                        <el-table-column prop="phone" label="手机号" width="180" align="center"></el-table-column>
+                    </el-table>
+                    <el-pagination background
+                                   layout="total,sizes,prev, pager, next,jumper"
+                                   :pager-count="5"
+                                   :total="totalCount"
+                                   :current-page="currentPage"
+                                   :page-sizes="[5, 10, 20, 40]"
+                                   page-size="pageSize" class="pager"
+                                   @size-change="handleSizeChange"
+                                   @current-change="handleCurrentChange"
+                    ></el-pagination>
+                </template>
+                <style>
+                    body {
+                        margin: 0;
+                    }
+                </style>
+            </el-tab-pane>
+
+            <el-tab-pane label="模块 2" name="second" enable="false">
+            </el-tab-pane>
+
+        </el-tabs>
+    </el-form>
+</el-main>
+
+<!--@prev-click="handleSearch(1)"-->
+<!--@next-click="handleSearch(2)"-->
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                labelPosition: 'left',
+                demoForm: {
+                    input: "",
+                    select1: "",
+                    selects: [],
+                    content: "",
+                    radio: '',
+                    value1: '',
+                    value2: '',
+                },
+                currentPage: 1,
+                pageSize: 5,
+                totalCount: 0,
+                tableData: [],
+                rules: {
+                    input: [
+                        {required: true, message: "请输入", trigger: 'blur'},
+                        {max: 3, message: "超过长度 3", trigger: 'blur'}
+                    ]
+                },
+                select1: [{
+                    value: 1,
+                    label: '选项 1'
+                }, {
+                    value: 2,
+                    label: '选项 2'
+                }, {
+                    value: 3,
+                    label: '选项 3'
+                }, {
+                    value: 4,
+                    label: '选项 4'
+                }],
+                loading: false,
+                radio: 1,
+                checkbox: ['复选框 A', '复选框 C'],
+                // TimePicker:[{
+                //     value1:new Date(2016, 9, 10, 18, 40)
+                // }, {
+                //     value2:new Date(2016, 9, 10, 18, 40)
+                // }]
+                DateTimePicker: ''
+            }
+        },
+
+        methods: {
+            getDataList() {
+                var vm = this;
+                var postData = {
+                    userId: vm.userId,
+                    username: vm.username,
+                    password: vm.password,
+                    phone: vm.phone,
+                    pageSize: vm.pageSize,
+                    currentPage: vm.currentPage,
+                };
+                vm.loading = true;
+                // 发送生单请求
+                axios.post('/getDataList', postData).then(function (res) {
+                    var resData;
+                    if (null != res && res != undefined) {
+                        resData = res.data;
+                        if (null != resData || resData != undefined) {
+                            if (resData.code == 0 && resData.data.length != 0) {
+                                console.log("=================")
+                                var page = resData.data;
+                                vm.loading = false;
+                                vm.tableData = page.list
+                                console.log("请求参数为" + JSON.stringify(page.list))
+                                vm.totalCount = page.count
+                                // vm.$message({
+                                //     message: resData.message,
+                                //     type: 'success'
+                                // });
+                            } else {
+                                vm.loading = false;
+                                vm.$message({
+                                    message: "数据加载失败" + resData.message,
+                                    duration: 0,
+                                    showClose: true,
+                                    type: 'error'
+                                });
+                            }
+                        }
+                    } else {
+                        vm.loading = false;
+                        vm.$message({
+                            message: "数据加载失败",
+                            duration: 0,
+                            showClose: true,
+                            type: 'error'
+                        });
+                    }
+                })
+            },
+            onSubmit(demoForm) {
+                var vm = this;
+                var postData = {
+                    orderType: vm.demoForm.orderType,
+                    pageSize: vm.pageSize,
+                    currentPage: vm.currentPage,
+                };
+                vm.loading = true;
+                // 发送生单请求
+                vm.getDataList(postData);
+            },
+            getAllSelect: function () {
+                var vm = this;
+                axios.get('/getAllSelect')
+                    .then(function (res) {
+                        if (null != res && res != undefined) {
+                            var resData = res.data;
+                            if (null != resData || resData != undefined) {
+                                if (resData.code == 1000 && resData.data.length != 0) {
+                                    vm.demoForm.selects = resData.data.selectInfos;
+                                }
+                            }
+                        }
+                    })
+            },
+            handleSizeChange(size) {
+                if (size == null || isNaN(size)) {
+                    return;
+                }
+                this.pageSize = size;
+                console.log("当前页面容量为" + this.pageSize)
+                this.getDataList();
+            },
+            handleCurrentChange(currentPage) {
+                if (currentPage == null || isNaN(currentPage)) {
+                    return;
+                }
+                this.currentPage = currentPage;
+                console.log("跳转第几页" + this.currentPage)
+                this.getDataList()
+            },
+        },
+        // 该函数表示：进入页面后，马上进行调用
+        mounted() {
+            this.getAllSelect()
+            this.getDataList()
+        }
+    })
+</script>
+
+</body>
+</html>

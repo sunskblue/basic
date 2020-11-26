@@ -20,7 +20,7 @@ public class PageDTO<T> implements Serializable {
     /**
      * 当前页
      */
-    private Integer pageNum;
+    private Integer currentPage;
 
     /**
      * 页面容量
@@ -40,16 +40,16 @@ public class PageDTO<T> implements Serializable {
     private List<T> list;
 
 
-    public void init() {
-        this.pageNum = 1;
-        this.pageSize = 10;
-    }
+//    public void init() {
+//        this.currentPage = 1;
+//        this.pageSize = 10;
+//    }
 
     public PageDTO() {
     }
 
-    public PageDTO(Integer pageNum, Integer pageSize, Long count, List<T> list) {
-        this.pageNum = pageNum;
+    public PageDTO(Integer currentPage, Integer pageSize, Long count, List<T> list) {
+        this.currentPage = currentPage;
         this.pageSize = pageSize;
         this.count = count;
         this.list = list;
@@ -72,12 +72,12 @@ public class PageDTO<T> implements Serializable {
     }
 
 
-    public Integer getPageNum() {
-        return pageNum;
+    public Integer getCurrentPage() {
+        return currentPage;
     }
 
-    public void setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
     }
 
     public Integer getPageSize() {
@@ -107,7 +107,7 @@ public class PageDTO<T> implements Serializable {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PageReqDTO{");
-        sb.append("pageNum=").append(pageNum);
+        sb.append("currentPage=").append(currentPage);
         sb.append(", pageSize=").append(pageSize);
         sb.append(", count=").append(count);
         sb.append(", list=").append(list);

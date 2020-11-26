@@ -1,0 +1,200 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
+}
+
+a {
+    text-decoration: none;
+}
+
+.el-header {
+    background-color: #409EFF;
+    height: 80px;
+    padding: 0;
+    margin: 0;
+}
+
+.el-aside,
+.el-main {
+    overflow: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.el-aside a {
+    color: #303133;
+}
+
+.el-aside a.is-active {
+    color: #409eff;
+!important;
+}
+
+.el-aside .is-active {
+    color: #409eff;
+!important;
+    background-color: #F2F6FC !important;
+}
+
+.el-table .cell {
+    white-space: pre-line !important;
+}
+
+.header-logo {
+    display: inline-block;
+    color: #fff;
+    vertical-align: middle;
+    padding: 0 10px;
+    margin: 0 10px;
+    line-height: 60px;
+    font-size: 24px;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+.header-operations {
+    display: inline-block;
+    float: right;
+    padding-right: 30px;
+    height: 100%;
+}
+
+.header-operations li {
+    color: #fff;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 10px;
+    margin: 0 10px;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+.header-operations li a {
+    color: #fff;
+}
+
+.el-menu-left:not(.el-menu--collapse) {
+    width: 196px;
+    min-height: 600px;
+}
+
+.query-form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    /*padding-bottom: 20px;*/
+    background-color: #f2f2f2;
+}
+
+.edit-form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #f2f2f2;
+}
+
+.el-table th {
+    background: #f2f2f2 !important;
+}
+
+.pager {
+    margin-top: 20px;
+}
+
+.el-table {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.table-expand {
+    font-size: 0;
+}
+
+.table-expand label {
+    width: 90px;
+    color: #99a9bf;
+}
+
+.table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 90%;
+}
+
+/*自定义*/
+.no-info {
+    margin-left: 15px;
+    height: 40px;
+}
+
+.clearFloat:after {
+    clear: both;
+    content: '';
+    width: 0;
+    height: 0;
+    display: block;
+    visibility: hidden;
+}
+
+.el-table .warning-row {
+    background-color: #e4e1e1;
+}
+
+.img-logo {
+    float: left;
+    margin-top: 10px;
+    margin-right: 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.link-table-self table{
+    width: 100%!important;
+    min-width: 1280px;
+}
+
+.page-up {
+    background-color: #409eff;
+    position: fixed;
+    right: 50px;
+    bottom: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
+    opacity: .5;
+    z-index: 100;
+}
+.el-icon-caret-top {
+    color: #fff;
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+}
+.page-to {
+    background-color: #409eff;
+    font-weight: bolder;
+    border-top: 10px;
+    margin-top: 10px;
+    position: fixed;
+    right: 50px;
+    bottom: 140px;
+    width: 60px;
+    height: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
+    opacity: .5;
+    z-index: 100;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" th:fragment="layout (template,menu)">
+<head>
+    <meta charset="UTF-8">
+    <title>交酒测试平台</title>
+    <!-- <link rel="stylesheet" href="//wpstatic.mafengwo.net/webpack/trans_static/css/element-ui-2.4.5.css"> -->
+    <link rel=icon href=https://wpstatic.mafengwo.net/webpack/trans_static/img/mfw-logo-new.png
+          mce_href=https://wpstatic.mafengwo.net/webpack/trans_static/img/mfw-logo-new.png type=image/x-icon>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link href="/new_static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/new_static/vendor/jquery/jquery.min.js"></script>
+    <script src="/new_static/jquery-cookie/jquery.cookie.js"></script>
+    <script src="//wpstatic.mafengwo.net/webpack/trans_static/js/vue-2.5.16.min.js"></script>
+    <script src="//wpstatic.mafengwo.net/webpack/trans_static/js/element-ui-2.4.5.js"></script>
+    <script src="//wpstatic.mafengwo.net/webpack/trans_static/js/axios-0.18.0.min.js"></script>
+    <script src="/new_static/vendor/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div id="app" style="margin: 0px;padding: 0px;" class="wrapper is-vertical">
+    <el-container>
+        <el-header>
+            <a class="header-logo" href="/"></a>
+<!--                <img class="img-logo" src="https://wpstatic.mafengwo.net/webpack/trans_static/img/mfw-logo-new.png"/>-->
+<!--                交酒测试平台</a>-->
+            <ul class="header-operations">
+                <li>当前用户:
+<!--                    <span th:text="${#httpServletRequest.getAttribute('LoginUserInfo').name}"></span>-->
+                </li>
+                <li><a href="https://cas.mafengwo.cn/standard/logout">退出登录</a></li>
+            </ul>
+        </el-header>
+        <el-container>
+            <el-aside class=“” width="200px">
+                <el-menu class="el-menu-left">
+                    <!-- 一级菜单目录顺序-->
+                    <el-submenu index="0">
+                        <template slot="title"><i class="navicon nav-2"></i>测试 demo</template>
+                        <!-- 二级菜单目录顺序-->
+                        <el-menu-item index="1" th:class="${'testPlatform'==menu ? 'is-active' : ''}">
+                            <a href="/testPlatform/demo"
+                               th:class="${'testPlatform'==menu ? 'is-active' : ''}">demo1</a>
+                        </el-menu-item>
+                        <el-menu-item index="2" th:class="${'testPlatform'==menu ? 'is-active' : ''}">
+                            <a href="/testPlatform/demo"
+                               th:class="${'testPlatform'==menu ? 'is-active' : ''}">demo2</a>
+                        </el-menu-item>
+                    </el-submenu>
+
+<!--                    <el-submenu index="1">-->
+<!--                        <template slot="title"><i class="navicon nav-2"></i>数据工厂</template>-->
+<!--                        <el-menu-item index="1" th:class="${'testPlatform'==menu ? 'is-active' : ''}">-->
+<!--                            <a href="/testPlatform/toolList"-->
+<!--                               th:class="${'testPlatform'==menu ? 'is-active' : ''}">机票</a>-->
+<!--                        </el-menu-item>-->
+<!--                        <el-menu-item index="2" th:class="${'testPlatform'==menu ? 'is-active' : ''}">-->
+<!--                            <a href="/testPlatform/opLogList"-->
+<!--                               th:class="${'testPlatform'==menu ? 'is-active' : ''}">操作日志</a>-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
+<!--                    <el-submenu index="2">-->
+<!--                        <template slot="title"><i class="navicon nav-2"></i>日志管理</template>-->
+<!--                        <el-menu-item index="1" th:class="${'testPlatform'==menu ? 'is-active' : ''}">-->
+<!--                            <a href="/testPlatform/opLogList"-->
+<!--                               th:class="${'testPlatform'==menu ? 'is-active' : ''}">操作日志</a>-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
+<!--                    <el-submenu index="4">-->
+<!--                        <template slot="title"><i class="navicon nav-2"></i>覆盖率统计</template>-->
+<!--                        <el-menu-item index="1" th:class="${'testPlatform'==menu ? 'is-active' : ''}">-->
+<!--                            <a href="/testPlatform/jacoco"-->
+<!--                               th:class="${'testPlatform'==menu ? 'is-active' : ''}">覆盖率报告</a>-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
+<!--                    <el-submenu index="6" id="submenu6">-->
+<!--                        <template slot="title"><i class="navicon nav-2"></i>接口测试</template>-->
+<!--                        <el-menu-item index="1" th:class="${'testPlatform_serviceList'==menu ? 'is-active' : ''}">-->
+<!--                            <a href="/testPlatform/itest/serviceList"-->
+<!--                               th:class="${'testPlatform_serviceList'==menu ? 'is-active' : ''}">服务管理</a>-->
+<!--                        </el-menu-item>-->
+<!--                        <el-submenu index="6-2">-->
+<!--                            <template slot="title">接口管理</template>-->
+<!--                            <el-menu-item index="6-2-1" th:class="${'testPlatform_apiList'==menu ? 'is-active' : ''}">-->
+<!--                                <a href="/testPlatform/itest/apiList"-->
+<!--                                   th:class="${'testPlatform_apiList'==menu ? 'is-active' : ''}">http接口</a>-->
+<!--                            </el-menu-item>-->
+<!--                            <el-menu-item index="6-2-2" th:class="${'testPlatform_apiListDubbo'==menu ? 'is-active' : ''}">-->
+<!--                                <a href="/testPlatform/itest/apiListDubbo"-->
+<!--                                   th:class="${'testPlatform_apiListDubbo'==menu ? 'is-active' : ''}">dubbo接口</a>-->
+<!--                            </el-menu-item>-->
+<!--                        </el-submenu>-->
+<!--                        <el-submenu index="6-3">-->
+<!--                            <template slot="title">用例管理</template>-->
+<!--                            <el-menu-item index="6-3-1" th:class="${'testPlatform_caseList'==menu ? 'is-active' : ''}">-->
+<!--                                <a href="/testPlatform/itest/caseList"-->
+<!--                                   th:class="${'testPlatform_caseList'==menu ? 'is-active' : ''}">http用例</a>-->
+<!--                            </el-menu-item>-->
+<!--                            <el-menu-item index="6-3-2" th:class="${'testPlatform_caseListDubbo'==menu ? 'is-active' : ''}">-->
+<!--                                <a href="/testPlatform/itest/caseListDubbo"-->
+<!--                                   th:class="${'testPlatform_caseListDubbo'==menu ? 'is-active' : ''}">dubbo用例</a>-->
+<!--                            </el-menu-item>-->
+<!--                            <el-menu-item index="6-3-3" th:class="${'testPlatform_caseSetList'==menu ? 'is-active' : ''}">-->
+<!--                                <a href="/testPlatform/itest/caseSetList"-->
+<!--                                   th:class="${'testPlatform_caseSetList'==menu ? 'is-active' : ''}">用例集合</a>-->
+<!--                            </el-menu-item>-->
+
+<!--                        </el-submenu>-->
+
+<!--                        <el-menu-item index="4" th:class="${'testPlatform_ruleList'==menu ? 'is-active' : ''}">-->
+<!--                            <a href="/testPlatform/itest/ruleList"-->
+<!--                               th:class="${'testPlatform_ruleList'==menu ? 'is-active' : ''}">规则管理</a>-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
+<!--                    <el-submenu index="5">-->
+<!--                        <template slot="title"><i class="navicon nav-2"></i>ota测试工具</template>-->
+<!--                        <el-menu-item index="1" th:class="${'testPlatform'==menu ? 'is-active' : ''}">-->
+<!--                            <a href="http://172.18.12.21:5026/json_take"-->
+<!--                               th:class="${'testPlatform'==menu ? 'is-active' : ''}">接口参数提取</a>-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
+<!--                    <el-submenu index="7">-->
+<!--                        <template slot="title"><i class="navicon nav-2"></i>App专项</template>-->
+<!--                        <el-menu-item index="1" th:class="${'testPlatform'==menu ? 'is-active' : ''}">-->
+<!--                            <a href="/testPlatform/appSpecial/appSpecialForAndroid"-->
+<!--                               th:class="${'testPlatform'==menu ? 'is-active' : ''}">UI遍历</a>-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
+<!--                    <el-submenu index="8">-->
+<!--                        <template slot="title">设备借用</template>-->
+<!--                        <el-menu-item index="1" th:class="${'testPlatform'==menu ? 'is-active' : ''}">-->
+<!--                            <a href="/testPlatform/phone/searchbook"-->
+<!--                               th:class="${'testPlatform'==menu ? 'is-active' : ''}">设备借用</a>-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
+                </el-menu>
+            </el-aside>
+            <!--<el-main>-->
+            <!--子页面的模板-->
+            <th:block th:include="${template}"/>
+            <!--</el-main>-->
+        </el-container>
+    </el-container>
+</div>
+<script type=text/javascript>
+    $('ul[role="menu"]').find('li').click(function(){
+
+        if ($(this).find('li').length==0)
+        {
+            $.cookie('nuv_statu', $(this).parent().prev().html(),{path:'/'})
+        }
+
+
+    })
+    $(document).ready(function(){
+        $('.el-submenu__title').each(function(){
+            if ($(this).html()==$.cookie('nuv_statu'))
+            {
+
+
+                if ($(this).parent().parent().attr('role')=='menu')
+                {
+                    $(this).parent().parent().removeAttr('style')
+                }
+
+                $(this).next().removeAttr('style')
+            }
+        })
+        $.cookie('nuv_statu',null,{path:'/'})
+
+    })
+</script>
+</body>
+</html>

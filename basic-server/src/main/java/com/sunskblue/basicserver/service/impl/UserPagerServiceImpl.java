@@ -26,17 +26,17 @@ public class UserPagerServiceImpl implements UserPagerService {
 
     @Override
     public PageDTO<TUser> SelectAllUser(UserSearchParam userSearchParam) {
-        if (StringUtils.isEmpty(userSearchParam.getPageSize())){
-            userSearchParam.init();
-        }
+//        if (StringUtils.isEmpty(userSearchParam.getPageSize())){
+//            userSearchParam.init();
+//        }
         PageDTO<TUser> page = new PageDTO<>();
-        PageHelper.startPage(userSearchParam.getPageNum(), userSearchParam.getPageSize());
+        PageHelper.startPage(userSearchParam.getCurrentPage(), userSearchParam.getPageSize());
         List<TUser> userList = userMapper.SelectAllUser(userSearchParam);
         page.setList(userList);
         long total = new PageInfo<>(userList).getTotal();
-        page.setPageNum(userSearchParam.getPageNum());
+        page.setCurrentPage(userSearchParam.getCurrentPage());
         page.setPageSize(userSearchParam.getPageSize());
-        long totalPage = total / userSearchParam.getPageNum() + 1;
+        long totalPage = total / userSearchParam.getCurrentPage() + 1;
         page.getTotalPage(totalPage);
         page.setCount(total);
         return page;
