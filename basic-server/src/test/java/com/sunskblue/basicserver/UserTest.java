@@ -8,10 +8,11 @@ import com.sunskblue.basicserver.service.UserPagerService;
 import com.sunskblue.basicserver.service.impl.UserPagerServiceImpl;
 import com.sunskblue.basicserver.service.impl.UserServiceImpl;
 import com.sunskblue.basicserver.util.GsonUtil;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.Test;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -21,8 +22,9 @@ import java.util.List;
  * @date Created in 2020/11/5 4:30 下午
  * Description：
  */
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = BasicServerApplication.class)
-public class UserTest extends AbstractTestNGSpringContextTests {
+public class UserTest {
     @Autowired
     private UserServiceImpl userService;
     @Resource
