@@ -2,11 +2,11 @@ package com.sunskblue.basicserver.mapper;
 
 import com.sunskblue.basicclient.bean.TUser;
 import com.sunskblue.basicserver.dto.UserSearchParam;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Repository
+@Mapper
 public interface UserMapper {
     List<TUser> SelectAll();
     void SaveUser(TUser tUser);
