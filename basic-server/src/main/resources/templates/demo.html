@@ -4,6 +4,11 @@
 <body>
 <el-main>
 
+    <!-- el-breadcrumb 面包屑导航
+        添加导航路由有两种方式：
+        一种方式是在el-breadcrumb-item中直接添加路由：to:{path:'/'}
+        另一种方式是在el-breadcrumb-item添加链接<a href="/"></a>
+     -->
     <el-breadcrumb separator="/">
         <el-breadcrumb-item><a href="/">首页</a></el-breadcrumb-item>
         <el-breadcrumb-item>demo1</el-breadcrumb-item>
@@ -11,21 +16,36 @@
     </el-breadcrumb>
 
     <!-- form 表单 -->
-    <!-- ref 绑定控件， model 可以理解为表单名，结合 rules 做表单验证  :label-position 表单对齐 需要在 data 中显示写明对其方式-->
+    <!-- ref 绑定控件，
+         model 可以理解为表单名，结合 rules 做表单验证
+         :label-position 表单对齐 需要在 data 中显示写明对其方式
+         inline：表单分为左右两边放数据（这个属性没有看到太大的差别，展示起来更加美观）
+    -->
     <el-form ref="form" :model="demoForm" :rules="rules" :label-position="labelPosition" inline="true"
              label-width="150px" class="query-form">
-        <!-- tab 选项卡 -->
-        <el-tabs type="border-card" value="first">
+        <!--
+            tab 选项卡
+            可以使用配置@tab-click 触发点击事件@tab-click="handleClick"
+        -->
+        <el-tabs type="border-card" value="first" >
+            <!--
+                el-tab-pane 通过 name 控制排序，first，second，third.....
+            -->
             <el-tab-pane label="模块 1" name="first">
                 <div class="clearFloat">
                     <el-row>
                         <!-- span 属性规定 col 横跨的列数 -->
                         <el-col span="8">
-
+                            <!-- v-model 简介
+                                 v-model 本质上是一个双向语法糖，不仅可以给 input 赋值还可以获取 input 中的数据，而且数据的获取是实时的，因为语法糖中是用 @input 对输入框进行监听的。
+                                 如下代码 <input v-model="demoForm.input"> 本质上是 <input :value="demoForm.input" @input="demoForm.input = $event.target.value">，
+                                 其中 @input 是对 <input> 输入事件的一个监听 :value="demoForm.input" 是将监听事件中的数据放入到 input，
+                                 v-model 可以在如下 el-input 中加入 value="{{demoForm.input}}" 获取 input 数据，然后去修改 input 中数据会发现 value="{{demoForm.input}}" 中数据随之改变。
+                                 v-model 可以在很多场景中使用，下拉框，input 框，单选框，复选框，时间选择器等等
+                            -->
                             <!-- prop 属性绑定字段名，表示需要进行校验的字段。表单验证时，就会验证 el-input 元素绑定的变量 demoForm.destCode 的值是否符合验证规则-->
                             <el-form-item label="输入框" prop="input">
                                 <!-- 输入框 input -->
-                                <!-- TODO -->
                                 <el-input v-model="demoForm.input" placeholder="请输入你想输入的字符"
                                           value="{{demoForm.input}}"
                                           style="width: 180px;"></el-input>
@@ -35,7 +55,11 @@
                     <el-row>
                         <el-col span="8">
                             <!-- 下拉框 select，可以通过写死的方式 -->
-                            <!-- 下拉框需要使用 v-for 遍历 -->
+                            <!-- 下拉框需要使用 v-for 遍历
+                                 key：要遍历的 key，一般来说和 value 写的都一样
+                                 value：传给后台的值
+                                 label：页面中显示的值
+                            -->
                             <el-form-item label="下拉框，写死数据" prop="select1">
                                 <el-select v-model="demoForm.select1" placeholder="请选择"
                                            style="width: 120px">
@@ -49,7 +73,11 @@
                             </el-form-item>
                         </el-col>
                         <el-col span="8">
-                            <!-- 下拉框 select，接口调用的方式 ，该下拉框调用的 getAllSelect 接口-->
+                            <!--
+                                下拉框 select，接口调用的方式
+                                该下拉框调用的 getAllSelect 接口，本次演示的是直接调用。
+                                还有一种方式是，通过动作触发，比如点击 A 下拉框的时候，选了了某个数据，然后要做联动。
+                            -->
                             <!-- 下拉框需要的数据是 Map<List> 格式数据 -->
                             <el-form-item label="下拉框，接口调用" prop="content">
                                 <el-select v-model="demoForm.content" placeholder="请选择" style="width: 120px">
@@ -177,8 +205,6 @@
     </el-form>
 </el-main>
 
-<!--@prev-click="handleSearch(1)"-->
-<!--@next-click="handleSearch(2)"-->
 <script>
     new Vue({
         el: '#app',
