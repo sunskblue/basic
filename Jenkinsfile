@@ -8,6 +8,9 @@ pipeline {
     MAVEN_M2_PATH = "/home/lanlan/.m2"
     // jar镜像名称,定义jar文件名 ->
     IMAGE_JAR_NAME = "${JOB_NAME}:latest"
+
+
+
   }
 
   agent none
